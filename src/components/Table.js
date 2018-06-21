@@ -4,6 +4,23 @@ import { Table, Button } from 'react-bootstrap';
 class TableContent extends React.Component {
   constructor() {
     super();
+    this.tableContent = this.tableContent.bind(this);
+  }
+
+  tableContent(){
+    let tableData = this.props.data;
+    return tableData.map( tableData => {
+      return (
+        <tr key={tableData.id} >
+          <td>{tableData.id}</td>
+          <td>{tableData.first_name}</td>
+          <td>{tableData.last_name}</td>
+          <td>{tableData.email}</td>
+          <td id={"updbtn"+tableData.id}><Button bsStyle="info">Update</Button></td>
+          <td id={"delbtn"+tableData.id}><Button bsStyle="danger">Delete</Button></td>
+        </tr>
+      );
+    })
   }
 
   render(){
@@ -14,36 +31,13 @@ class TableContent extends React.Component {
             <th>#</th>
             <th>First Name</th>
             <th>Last Name</th>
-            <th>Username</th>
+            <th>Email</th>
             <th>Update</th>
             <th>Delete</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td><Button bsStyle="info">Update</Button></td>
-            <td><Button bsStyle="danger">Delete</Button></td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td><Button bsStyle="info">Update</Button></td>
-            <td><Button bsStyle="danger">Delete</Button></td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Larry the Bird</td>
-            <td>Thornton</td>
-            <td>@twitter</td>
-            <td><Button bsStyle="info">Update</Button></td>
-            <td><Button bsStyle="danger">Delete</Button></td>
-          </tr>
+          {this.tableContent()}
         </tbody>
       </Table>
     );

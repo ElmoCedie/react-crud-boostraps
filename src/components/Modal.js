@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
+import { Button, Modal, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 
 
 class ModalCom extends React.Component {

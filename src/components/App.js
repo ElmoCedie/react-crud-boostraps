@@ -1,21 +1,39 @@
 import React from 'react';
 import TableContent from './Table';
 import ModalCom from './Modal';
-
-import { Button } from 'react-bootstrap';
+import axios from 'axios';
 
 class App extends React.Component {
-    render() {
-      return (
-        <div>
-
-          <ModalCom  />
-
-          <TableContent />
-
-        </div>
-      );
-    }
+  constructor(){
+    super();
+    this.state = {
+      userData: [],
+    };
   }
+
+  componentWillMount(){
+    axios.get('http://localhost:3000/UsersData.json').then( res => {
+        this.setState({ userData: res.data });
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <div id="header">
+          <h1>React C.R.U.D Bootstrap</h1>
+        </div>
+
+        <div>
+          <ModalCom  />
+        </div>
+
+        <div className="tableStyle">
+          <TableContent data={this.state.userData}/>
+        </div>
+      </div>
+    );
+  }
+}
 
 export default App;
