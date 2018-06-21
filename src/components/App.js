@@ -11,6 +11,7 @@ class App extends React.Component {
       userData: [],
     };
     this.addJSON = this.addJSON.bind(this);
+    this.removeJSON = this.removeJSON.bind(this);
   }
 
   componentWillMount(){
@@ -20,9 +21,14 @@ class App extends React.Component {
   }
 
   addJSON(event){
-    let last_number = this.state.userData.length + 1;
-    const data = ({ id: last_number, ...event  });
+    let new_number = this.state.userData[this.state.userData.length - 1];
+    const data = ({ id: new_number.id+1 , ...event  });
     this.setState({ userData:  this.state.userData.concat([ data ])  });
+  }
+
+  removeJSON(event){
+      const updatedData = this.state.userData.filter(function(e){ return e.id !== event});
+      this.setState({ userData: updatedData })
   }
 
   render() {
@@ -39,7 +45,10 @@ class App extends React.Component {
         </div>
 
         <div className="tableStyle">
-          <TableContent data={this.state.userData} />
+          <TableContent
+            data={this.state.userData}
+            removeJSON={this.removeJSON}
+          />
         </div>
 
       </div>

@@ -17,7 +17,7 @@ class TableContent extends React.Component {
           <td>{tableData.last_name}</td>
           <td>{tableData.email}</td>
           <td id={"updbtn"+tableData.id}><Button bsStyle="info">Update</Button></td>
-          <td id={"delbtn"+tableData.id}><Button bsStyle="danger">Delete</Button></td>
+          <td id={"delbtn"+tableData.id}><Button onClick={ () => this.props.removeJSON(tableData.id) } bsStyle="danger">Delete</Button></td>
         </tr>
       );
     })
