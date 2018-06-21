@@ -5,6 +5,18 @@
   display: flex;
 }
 
+input {
+  width: 100%;
+}
+
+.inputlbl h5 {
+  margin-bottom: 5px;
+}
+
+.inputlbl input {
+  margin-bottom: 10px;
+}
+
 .tableStyle {
   margin-top: 15px;
 }

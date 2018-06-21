@@ -3,15 +3,18 @@ import { Button, Modal, FormGroup, ControlLabel, FormControl } from 'react-boots
 
 
 class ModalCom extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor() {
+    super();
+    this.state = {
+      show: false,
+      first_name: '',
+      last_name: '',
+      email: '',
+    };
 
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
-
-    this.state = {
-      show: false
-    };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleClose() {
@@ -20,6 +23,12 @@ class ModalCom extends React.Component {
 
   handleShow() {
     this.setState({ show: true });
+  }
+
+  handleSubmit() {
+    const { first_name, last_name, email } = this.state;
+    this.props.addJSON({ first_name, last_name, email });
+    this.setState({ show: false });
   }
 
   render() {
@@ -37,39 +46,27 @@ class ModalCom extends React.Component {
 
           <Modal.Body>
             <form>
-              <FormGroup
-                controlId="formBasicText"
-              >
-                <ControlLabel>Please enter all fields</ControlLabel>
-                <br/>
+              <div className="inputlbl">
+                <h5>First name:</h5>
+                <input type="text" name="firstname" onChange={ (e) => {this.setState({first_name: e.target.value})} } />
+              </div>
 
-                <FormControl
-                  type="text"
-                  value={this.state.value}
-                  placeholder="Enter First Name"
-                />
-                <br/>
-                <FormControl
-                  type="text"
-                  value={this.state.value}
-                  placeholder="Enter Last Name"
-                />
-                <br/>
+              <div className="inputlbl">
+                <h5>Last name:</h5>
+                <input type="text" name="lastname" onChange={ (e) => {this.setState({last_name: e.target.value})} } />
+              </div>
 
-                <FormControl
-                  type="text"
-                  value={this.state.value}
-                  placeholder="Enter Email"
-                />
+              <div className="inputlbl">
+                <h5>Email:</h5>
+                <input type="text" name="email" onChange={ (e) => {this.setState({email: e.target.value})} } />
+              </div>
 
-
-              </FormGroup>
+              <Button onClick={this.handleSubmit} bsStyle="primary" bsSize="large">submit</Button>
             </form>
           </Modal.Body>
 
           <Modal.Footer>
             <Button onClick={this.handleClose}>Close</Button>
-            <Button bsStyle="success">Submit</Button>
           </Modal.Footer>
         </Modal>
       </div>
