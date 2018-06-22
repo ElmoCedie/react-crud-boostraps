@@ -1,14 +1,15 @@
 import React from 'react';
 import { Button, Modal } from 'react-bootstrap';
 
-class ModalCom extends React.Component {
-  constructor() {
-    super();
+class UpdateModal extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
       show: false,
-      first_name: '',
-      last_name: '',
-      email: '',
+      id: this.props.data.id,
+      first_name: this.props.data.first_name,
+      last_name: this.props.data.last_name,
+      email: this.props.data.email,
     };
 
     this.handleShow = this.handleShow.bind(this);
@@ -25,8 +26,8 @@ class ModalCom extends React.Component {
   }
 
   handleSubmit() {
-    const { first_name, last_name, email } = this.state;
-    this.props.addJSON({ first_name, last_name, email });
+    const { id, first_name, last_name, email } = this.state;
+    this.props.updateJSON({ id, first_name, last_name, email });
     this.setState({ show: false });
   }
 
@@ -34,30 +35,30 @@ class ModalCom extends React.Component {
 
     return (
       <div>
-        <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
-          Add
+        <Button bsStyle="info" onClick={this.handleShow}>
+          Update
         </Button>
 
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Add New User</Modal.Title>
+            <Modal.Title>Update User</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
             <form>
               <div className="inputlbl">
                 <h5>First name:</h5>
-                <input type="text" name="firstname" onChange={ (e) => {this.setState({first_name: e.target.value})} } />
+                <input type="text" name="firstname" value={this.state.first_name} onChange={ (e) => {this.setState({first_name: e.target.value})} } />
               </div>
 
               <div className="inputlbl">
                 <h5>Last name:</h5>
-                <input type="text" name="lastname" onChange={ (e) => {this.setState({last_name: e.target.value})} } />
+                <input type="text" name="lastname" value={this.state.last_name} onChange={ (e) => {this.setState({last_name: e.target.value})} } />
               </div>
 
               <div className="inputlbl">
                 <h5>Email:</h5>
-                <input type="text" name="email" onChange={ (e) => {this.setState({email: e.target.value})} } />
+                <input type="text" name="email" value={this.state.email} onChange={ (e) => {this.setState({email: e.target.value})} } />
               </div>
 
               <Button onClick={this.handleSubmit} bsStyle="primary" bsSize="large">submit</Button>
@@ -73,4 +74,4 @@ class ModalCom extends React.Component {
   }
 }
 
-export default ModalCom;
+export default UpdateModal;
