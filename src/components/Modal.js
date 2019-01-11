@@ -47,20 +47,50 @@ class ModalCom extends React.Component {
             <form>
               <div className="inputlbl">
                 <h5>First name:</h5>
-                <input type="text" name="firstname" onChange={ (e) => {this.setState({first_name: e.target.value})} } />
+                <input
+                  type="text"
+                  name="firstname"
+                  onChange={ (e) => {
+                    this.setState({
+                      first_name: e.target.value
+                  })}
+                  }
+                />
               </div>
 
               <div className="inputlbl">
                 <h5>Last name:</h5>
-                <input type="text" name="lastname" onChange={ (e) => {this.setState({last_name: e.target.value})} } />
+                <input
+                  type="text"
+                  name="lastname"
+                  onChange={ (e) => {
+                    this.setState({
+                      last_name: e.target.value
+                    })}
+                  }
+                />
               </div>
 
               <div className="inputlbl">
                 <h5>Email:</h5>
-                <input type="text" name="email" onChange={ (e) => {this.setState({email: e.target.value})} } />
+                <input
+                  type="text"
+                  name="email"
+                  onChange={ (e) => {
+                    this.setState({
+                      email: e.target.value
+                    })}
+                  }
+                />
               </div>
 
-              <Button onClick={this.handleSubmit} bsStyle="primary" bsSize="large">submit</Button>
+              <Button
+                onClick={this.handleSubmit}
+                bsStyle="primary"
+                bsSize="large"
+              >
+                submit
+              </Button>
             </form>
           </Modal.Body>
 
